@@ -1,0 +1,172 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Oblique;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red38\green38\blue38;
+\red47\green102\blue178;}
+{\*\expandedcolortbl;\csgray\c100000;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;\cssrgb\c20000\c20000\c20000;
+\cssrgb\c23529\c48627\c75294;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl520\partightenfactor0
+
+\f0\fs40 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 HW10 - MapReduce my heart\
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+
+\fs26 \cf4 \strokec4 The good news is that this is our last homework assignment.\'a0 The bad news is that this may be the most challenging homework assignment.\'a0 An early start is highly recommended.\'a0 You do have until the end of the day on November 18th to hand this in.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 -----------------------------------------------------------------------------\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 In this assignment, you will write two MapReduce programs that use a Yelp data set.\'a0 There is an extra credit option.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 You are a new hire in the data science team at Yope, an Internet company that provides business yellow page information and user reviews. After first week's training, you have enjoyed the relaxing atmosphere and all-you-can-drink beer fountain at work. Now your boss comes to you with your first several work assignment.\cb1 \
+\cb3 \'a0\cb1 \
+\pard\pardeftab720\sl320\sa40\partightenfactor0
+
+\b \cf4 \cb3 Setting up your machine with map reduce
+\b0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \
+\cb3 Install the mrjob package using pip install mrjob.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 You can find supplementary files\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400\partightenfactor0
+\ls1\ilvl0
+\f1 \cf4 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 unique_word_template.py
+\f0 \cb1 \
+\ls1\ilvl0
+\f1 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 user_similarity_template.py
+\f0 \cb1 \
+\ls1\ilvl0
+\f1 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 yelp_academic_dataset_review.json
+\f0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \
+\cb3 in 
+\f1 hw9files.zip
+\f0  on the class resources page.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 In general, you will run your programs with\'a0 
+\f1 yelp_academic_dataset_review.json
+\f0  as an argument.\'a0 For example:\'a0\cb1 \
+\cb3 \'a0\cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+
+\f1 \cf4 \cb3 python
+\f0  <your python file> 
+\f1 yelp_academic_dataset_review.json
+\f0 .\cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\pard\pardeftab720\sl320\sa40\partightenfactor0
+
+\b \cf4 \cb3 Part 1:\'a0 Most unique review
+\b0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\cb3 Your boss asks you to search the company database for the online review that is most unique. (Maybe they are randomly generated content and need to be removed). You decide to use mapreduce to find the review with the most words that are not used in any other review.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 In this part, start from 
+\f1 unique_word_template.py
+\f0 . Finish each TODO section and make it run to output the review id in which contains the most unique words. (Those words only appear in one review, and do not appear in others.)\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 Sample Output:\cb1 \
+\cb3 \'a0\cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+
+\f1 \cf4 \cb3 "WXshgoreBsq124bnadiu3nq"\'a0120
+\f0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\pard\pardeftab720\sl320\sa40\partightenfactor0
+
+\b \cf4 \cb3 Part 2:\'a0 Duplicate user detection
+\b0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\cb3 Your company has a problem with users trying to cheat the system by setting up multiple accounts to make reviews. Your boss asks you to find a way to detect when two accounts actually belong to the same person. You theorize that two accounts with reviews that always rate similar business will belong to the same person (Some corrupt individuals were paid to write reviews for businesses). You want to write a program to flag those accounts.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 In this part, start from 
+\f1 user_similarity_template.py
+\f0 . Finish each TODO section and make it run to output pairs of user ids 
+\i <user_id_1, user_id_2>
+\i0  and its Jaccard score if the Jaccard similarity >= 0.5. Please review the definition of Jaccard similarity on Wikipedia ({\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/Jaccard_index"}}{\fldrslt \cf5 \strokec5 http://en.wikipedia.org/wiki/Jaccard_index}}) or Coursera ({\field{\*\fldinst{HYPERLINK "https://class.coursera.org/nlp/lecture/184"}}{\fldrslt \cf5 \strokec5 https://class.coursera.org/nlp/lecture/184}}).\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 Sample Output:\cb1 \
+\cb3 \'a0\cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+
+\f1 \cf4 \cb3 ["xx2j7XRWLFN7QavS5jcbFw", "yZEz7ZHDt9MU7ehH9ecCQA"] 0.5\cb1 \uc0\u8232 \cb3 ["xyuqtuV71y2F3uD9z97jPw", "zvfGidbeZn9A_kkRWK6JLw"] 0.6
+\f0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\pard\pardeftab720\sl320\sa40\partightenfactor0
+
+\b \cf4 \cb3 Extra Credit:\'a0 Duplicate user detection - A more accurate model
+\b0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\cb3 After presenting your boss with the results of Part 2, you realize that user pairs with high business similarity are not necessarily a single user. (Maybe they are two people who live in the same area with similar dining habits.) However, you notice that some users tend to use a similar word set for reviewing. So you come up another approach to identify duplicate account: If two users use similar words in their reviews (Jaccard similarity >= 0.5), the two user ids are suspected of being owned by one person. You want to write a program to output those accounts.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 For the extra credit, there is no code template. Your mission is to create a program that calculate the word set similarity by Jaccard function, and output those user pairs whose Jaccard similarity >= 0.5.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 For example: if User1 uses word set (
+\i W1, W2, W3
+\i0 ) in all reviews and User2 uses word set (
+\i W1, W2, W4
+\i0 ) in all reviews, then the Jaccard similarity is \cb1 \
+\cb3 \'a0\cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+
+\i \cf4 \cb3 len ([W1,W2])/ len ([W1,W2,W3,W4]) = 2/4 = 0.5
+\i0 .\cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\cb3 Your program should output 
+\i <user_id_1, user_id_2>
+\i0  and its Jaccard similarity score.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 Sample Output:\cb1 \
+\cb3 \'a0\cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+
+\f1 \cf4 \cb3 ["yLYR5tt0_mRvDwVmkZ7Frw", "zXJ0IhDQzpJXQ8mPdCqbsg"]\'a00.6\cb1 \uc0\u8232 \cb3 ["yM0Bv8lqQrx9Yo0_1rtqxg", "ypqCBI5rMe_ecGE1iZpQaQ"]\'a00.9
+\f0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\pard\pardeftab720\sl320\sa40\partightenfactor0
+
+\b \cf4 \cb3 Homework submission
+\b0 \cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\cb3 Prepare two (or three) files:\'a0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400\partightenfactor0
+\ls2\ilvl0
+\f1 \cf4 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 hw10_part1.
+\f0 <UserID>
+\f1 .py
+\f0 \cb1 \
+\ls2\ilvl0
+\f1 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 hw10_part2.
+\f0 <UserID>
+\f1 .py
+\f0 \cb1 \
+\ls2\ilvl0
+\f1 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 hw10_extracredit.
+\f0 <UserID>
+\f2\i .py
+\f0\i0  and upload them using the usual process.\'a0\cb1 \
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+\cf4 \cb3 \'a0\cb1 \
+\cb3 This assignment is due on November 18 at 11:59PM.\'a0 \cb1 \uc0\u8232 \
+}

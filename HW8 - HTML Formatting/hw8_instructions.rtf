@@ -1,0 +1,208 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red38\green38\blue38;
+\red47\green102\blue178;}
+{\*\expandedcolortbl;\csgray\c100000;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;\cssrgb\c20000\c20000\c20000;
+\cssrgb\c23529\c48627\c75294;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl520\partightenfactor0
+
+\f0\fs40 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Homework 8 - formatting HTML\
+\pard\pardeftab720\sl300\sa40\partightenfactor0
+
+\fs26 \cf4 \strokec4 Homework 8 is due at 9AM on Novembrer.\'a0 It is in eight parts, and you will turn in the eighth part.\'a0\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 The assignment has a number of supporting files which will be posted in a zip file on the class resource page.\cb1 \
+\uc0\u8232 \cb3 Your goal is to create a set of classes to render html pages \'96 in a \'93pretty printed\'94 way. i.e nicely indented and human readable. We\'92ll try to get to all the features required to render 
+\f1 sample_html.html
+\f0 .\'a0 (Make sure you read this file in a text editor to see how nicely it is rendered, rather than in a browser.\'a0 One way to do this if you are on Windows is to rename the file 
+\f1 sample_html.txt
+\f0 .)\cb1 \uc0\u8232 \u8232 \cb3 The exercise is broken down into a number of steps \'96 each requiring a few more object-oriented concepts in Python.\cb1 \
+\uc0\u8232 
+\b \cb3 General Instructions:
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 For each step, add the required functionality. There is example code to run your code for each step in: 
+\f1 run_html_render.py
+\f0 \cb1 \uc0\u8232 \u8232 \cb3 Name your file 
+\f1 html_render.py
+\f0  so it can be imported by 
+\f1 run_html_render.py
+\f0 \cb1 \uc0\u8232 \u8232 \cb3 You should be able to run that code at each step, uncommenting each new step in 
+\f1 run_html_render.py
+\f0  as you go.\cb1 \uc0\u8232 \u8232 \cb3 It builds up a html tree, and then calls the 
+\f1 render()
+\f0  method of your element to render the page.\cb1 \uc0\u8232 \u8232 \cb3 It uses a 
+\f1 cStringIO
+\f0  object (like a file, but in memory) to render to memory, then dumps it to the console, and writes a file. Take a look at the code at the end to make sure you understand it.\cb1 \uc0\u8232 \u8232 \cb3 The html generated at each step is in the files 
+\f1 test_html_ouput1.html
+\f0 , 
+\f1 test_html_ouput2.html
+\f0 , etc.\cb1 \uc0\u8232 \u8232 \cb3 At each step, your results should look similar to those.\cb1 \
+\uc0\u8232 
+\b \cb3 Step 1
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 Create an 
+\f1 Element
+\f0  class for rendering an html element.\cb1 \uc0\u8232 \u8232 \cb3 It should have class attributes for the tag name (\'93html\'94 first) and the indentation (spaces to indent for pretty printing)\cb1 \uc0\u8232 \u8232 \cb3 The constructor signature should look like\cb1 \uc0\u8232 \u8232 
+\f1 \cb3 Element(content=None)
+\f0 \cb1 \uc0\u8232 \u8232 \cb3 where 
+\f1 content
+\f0  is a string\cb1 \uc0\u8232 \u8232 \cb3 It should have an 
+\f1 append
+\f0  method that can add another string to the content.\cb1 \uc0\u8232 \u8232 \cb3 It should have a 
+\f1 render(file_out, ind = "")
+\f0  method that renders the tag and the strings in the content.\cb1 \uc0\u8232 \u8232 
+\f1 \cb3 file_out
+\f0  could be any file-like object ( i.e. have a 
+\f1 write()
+\f0  method ).\cb1 \uc0\u8232 \u8232 
+\f1 \cb3 ind
+\f0  is a string with the indentation level in it: the amount that the tag should be indented for pretty printing.\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 (Note 
+\f1 ind
+\f0  will be the amount that this element should be indented already. It will be from zero [an empty string] to a lot of spaces, depending on how deep it is in the tree.)\cb1 \uc0\u8232 \u8232 \cb3 The amount of indentation should be set by the class attribute 
+\i indent
+\i0 \cb1 \uc0\u8232 \u8232 \cb3 You should now be able to render an html tag with text in it as content.\cb1 \uc0\u8232 \u8232 
+\b \cb3 Step 2
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 Create a couple subclasses of 
+\f1 Element
+\f0 , for a 
+\f1 <body>
+\f0  tag and 
+\f1 <p>
+\f0  tag. All you should have to do is override the tag class attribute (you may need to add a tag class attribute to the 
+\f1 Element
+\f0  class first.)\cb1 \uc0\u8232 \u8232 \cb3 Now you can render a few different types of elements.\cb1 \uc0\u8232 \u8232 \cb3 Extend the 
+\f1 Element.render()
+\f0  method so that it can render other elements inside the tag in addition to strings. Simple recursion should do it:\'a0 it can call the 
+\f1 render()
+\f0  method of the elements it contains. You\'92ll need to be smart about setting the 
+\f1 ind
+\f0  optional parameter \'96 so that the nested elements get indented correctly.\cb1 \uc0\u8232 \u8232 \cb3 Figure out a way to deal with the fact that the contained elements could be either simple strings or 
+\f1 Element
+\f0 s with render methods.\cb1 \uc0\u8232 \u8232 \cb3 You should now be able to render a basic web page with an html tag around the whole thing, a 
+\f1 <body>
+\f0  tag inside, and multiple 
+\f1 <p>
+\f0  tags inside that, with text inside that. And all indended nicely.\cb1 \uc0\u8232 \u8232 
+\b \cb3 Step 3
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 Create a 
+\f1 <head>
+\f0  element \'96 simple subclass.\cb1 \uc0\u8232 \u8232 \cb3 Create a 
+\f1 OneLineTag
+\f0  subclass of 
+\f1 Element
+\f0 .\'a0 It should override the render method, to render everything on one line \'96 for the simple tags, like:\cb1 \uc0\u8232 \u8232 \cb3 \'a0\'a0\'a0 
+\f1 <title> CS206 Homework 8 </title>
+\f0 \cb1 \uc0\u8232 \u8232 \cb3 Create a 
+\f1 Title
+\f0  subclass of 
+\f1 OneLineTag
+\f0  class for the title.\cb1 \uc0\u8232 \u8232 \cb3 You should now be able to render an html doc with a head element, with a title element in that, and a body element with some 
+\f1 <P>
+\f0 elements and some text.\cb1 \uc0\u8232 \u8232 \cb3 Step 4\cb1 \uc0\u8232 \u8232 \cb3 Extend the 
+\f1 Element
+\f0  class to accept a set of attributes as keywords to the constructor, such as\cb1 \uc0\u8232 \u8232 
+\f1 \cb3 Element("some text content", id="TheList", style="line-height:200%")
+\f0 \cb1 \uc0\u8232 \u8232 \cb3 Hint:\'a0 look up *
+\f1 *kwargs
+\f0  in Python\cb1 \uc0\u8232 \u8232 \cb3 The render method will need to be extended to render the attributes properly.\cb1 \uc0\u8232 \u8232 \cb3 You can now render some 
+\f1 <p>
+\f0  tags (and others) with attributes\cb1 \uc0\u8232 \u8232 
+\b \cb3 Step 5
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 Create a 
+\f1 SelfClosingTag
+\f0  subclass of 
+\f1 Element
+\f0 , to render tags like:\cb1 \uc0\u8232 \u8232 
+\f1 \cb3 <hr />
+\f0  and 
+\f1 <br />
+\f0  (horizontal rule and line break).\cb1 \uc0\u8232 \u8232 \cb3 You will need to override the render method to render just the one tag and attributes, if any.\cb1 \uc0\u8232 \u8232 \cb3 Create subclasses of SelfClosingTag for 
+\f1 <hr />
+\f0  and 
+\f1 <br />
+\f0 \cb1 \uc0\u8232 \u8232 
+\b \cb3 Step 6
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 Create a 
+\f1 A
+\f0  class for an anchor (link) element. Its constructor should look like\cb1 \uc0\u8232 \u8232 
+\f1 \cb3 A(self, link, content)
+\f0 \cb1 \uc0\u8232 \u8232 \cb3 where 
+\f1 link
+\f0  is the link, and content is what you see. It can be called like this\cb1 \uc0\u8232 \u8232 
+\f1 \cb3 A(u"http://google.com", u"link to google")
+\f0 \cb1 \
+\cb3 \'a0\cb1 \
+\cb3 (note that the initial 
+\f1 u
+\f0  before the string indicates that it is a Unicode string.)\cb1 \uc0\u8232 \u8232 \cb3 You should be able to subclass from 
+\f1 Element
+\f0 , and only override the 
+\f1 __init__, c
+\f0 alling the 
+\f1 Element __init__
+\f0  from the 
+\f1 A __init__
+\f0 \cb1 \uc0\u8232 \u8232 \cb3 You can now add a link to your web page.\cb1 \uc0\u8232 \u8232 
+\b \cb3 Step 7
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 Create the 
+\f1 Ul
+\f0  class for an unordered list (a simple subclass of 
+\f1 Element
+\f0 )\cb1 \uc0\u8232 \u8232 \cb3 Create the 
+\f1 Li
+\f0  class for an element in a list (also simple)\cb1 \uc0\u8232 \u8232 \cb3 Add a list to your web page.\cb1 \uc0\u8232 \u8232 \cb3 Create a 
+\f1 Header
+\f0  class \'96 this one should take an integer argument for the header level. i.e 
+\f1 <h1>
+\f0 , 
+\f1 <h2>
+\f0 , 
+\f1 <h3>
+\f0 , called this way\cb1 \uc0\u8232 \u8232 
+\f1 \cb3 H(2, "The text of the header"
+\f0 )\cb1 \uc0\u8232 \u8232 \cb3 for an 
+\f1 <h2>
+\f0  header\cb1 \uc0\u8232 \u8232 \cb3 It can subclass from 
+\f1 OneLineTag
+\f0  \'96 overriding the 
+\f1 __init__
+\f0 , then calling the superclass 
+\f1 __init__
+\f0 \cb1 \uc0\u8232 \u8232 
+\b \cb3 Step 8
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 Update the 
+\f1 Html
+\f0  element class to render the 
+\f1 <!DOCTYPE html>
+\f0  tag at the head of a page, before the 
+\f1 html
+\f0  element.\cb1 \uc0\u8232 \u8232 \cb3 You can do this by subclassing 
+\f1 Element
+\f0 , overriding 
+\f1 render()
+\f0 , but then calling the 
+\f1 Element
+\f0  render from the new render.\cb1 \uc0\u8232 \u8232 \cb3 Create a subclass of 
+\f1 SelfClosingTag
+\f0  for 
+\f1 <meta charset="UTF-8" />
+\f0  (like for 
+\f1 <hr />
+\f0  and 
+\f1 <br />
+\f0  and add the meta element to the beginning of the head element to give your document an encoding.\cb1 \uc0\u8232 \u8232 \cb3 (The doctype and encoding are HTML 5 and you can check this at: {\field{\*\fldinst{HYPERLINK "http://validator.w3.org/"}}{\fldrslt \cf5 \strokec5 http://validator.w3.org}}).\cb1 \uc0\u8232 \u8232 \cb3 You now have a fairly full-featured html renderer \'96 play with it, consider adding some additional tags, etc.\cb1 \
+\uc0\u8232 
+\b \cb3 Testing and Submission
+\b0 \cb1 \uc0\u8232 \u8232 \cb3 Please extensively and carefully test your assignment. \cb1 \uc0\u8232 \u8232 \cb3 When your program is complete, rename 
+\f1 html_render.py
+\f0  as 
+\f1 hw8.<userID>.py
+\f0 .\'a0\cb1 \
+\cb3 \'a0\cb1 \
+\cb3 Upload these files using the file upload tool available at\'a0
+\f1 https://www.ischool.berkeley.edu/uploader/?s=i206.
+\f0 \cb1 \
+}
